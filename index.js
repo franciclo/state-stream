@@ -1,7 +1,7 @@
-import ObjectPathImmutable from 'object-path-immutable'
-import ObjectPath from 'object-path'
-import {diff} from 'deep-diff'
-import Rx from 'rxjs/Rx'
+var ObjectPathImmutable = require('object-path-immutable')
+var ObjectPath = require('object-path')
+var diff = require('deep-diff').diff
+var Rx = require('rxjs/Rx')
 
 var localState = JSON.parse(window.localStorage.getItem('$tate'))
 var stateData = localState || {}
@@ -89,4 +89,4 @@ if (window.localStorage.getItem('debug') === "true") {
   }
 }
 window.$tate = query
-export default query
+exports.query
