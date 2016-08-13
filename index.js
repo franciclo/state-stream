@@ -33,7 +33,7 @@ var state$Diffs = state$
 
 state$Diffs.connect()
 
-module.exports = function (path) {
+function query (path) {
   return {
     on: function (kind) {
       kind = typeof kind === 'string'
@@ -52,40 +52,41 @@ module.exports = function (path) {
   }
 }
 
-// if (window.localStorage.getItem('debug') === "true") {
-//   window.$tateViz = function () {
-//     console.log('need to bind clear()')
-//     console.log('window.clear = clear')
-//     debugger
-//     if (typeof window.clear === 'function') {
-//       state$Diffs
-//         .map(function (d) {
-//           return {
-//             changetype: (function (kind) {
-//               switch (kind) {
-//                 case 'N':
-//                   return 'New'
-//                 case 'E':
-//                   return 'Edited'
-//                 case 'D':
-//                   return 'Deleted'
-//                 case 'A':
-//                   return 'New in array'
-//               }
-//             }(d.kind)),
-//             path: d.path.join('.'),
-//             value: JSON.stringify(d.rhs)
-//           }
-//         })
-//         .scan(function (acc, v) {
-//           acc.push(v)
-//           return acc
-//         }, [])
-//         .subscribe(function (ds) {
-//           window.clear()
-//           console.table(ds)
-//         })
-//     }
-//   }
-// }
-// window.$tate = query
+if (window.localStorage.getItem('debug') === "true") {
+  window.$tateViz = function () {
+    console.log('need to bind clear()')
+    console.log('window.clear = clear')
+    debugger
+    if (typeof window.clear === 'function') {
+      state$Diffs
+        .map(function (d) {
+          return {
+            changetype: (function (kind) {
+              switch (kind) {
+                case 'N':
+                  return 'New'
+                case 'E':
+                  return 'Edited'
+                case 'D':
+                  return 'Deleted'
+                case 'A':
+                  return 'New in array'
+              }
+            }(d.kind)),
+            path: d.path.join('.'),
+            value: JSON.stringify(d.rhs)
+          }
+        })
+        .scan(function (acc, v) {
+          acc.push(v)
+          return acc
+        }, [])
+        .subscribe(function (ds) {
+          window.clear()
+          console.table(ds)
+        })
+    }
+  }
+}
+window.$tate = query
+module.exports = query
