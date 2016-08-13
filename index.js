@@ -3,8 +3,7 @@ var ObjectPath = require('object-path')
 var diff = require('deep-diff').diff
 var Rx = require('rxjs/Rx')
 
-var localState = JSON.parse(window.localStorage.getItem('$tate'))
-var stateData = localState || {}
+var stateData = {}
 var seed = {state: ObjectPath(stateData), diff: []}
 var state$ = new Rx.Subject()
 var state$Diffs = state$
