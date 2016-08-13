@@ -33,7 +33,7 @@ var state$Diffs = state$
 
 state$Diffs.connect()
 
-function query (path) {
+module.exports = function (path) {
   return {
     on: function (kind) {
       kind = typeof kind === 'string'
@@ -89,4 +89,3 @@ if (window.localStorage.getItem('debug') === "true") {
   }
 }
 window.$tate = query
-exports.query
