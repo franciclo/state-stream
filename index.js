@@ -51,5 +51,5 @@ function query (path) {
   }
 }
 
-if (window) window.$tate = query
+if (typeof window !== 'undefined') window.$tate = query
 module.exports = query
