@@ -51,4 +51,5 @@ function query (path) {
   }
 }
 
+if (window) window.$tate = query
 module.exports = query
