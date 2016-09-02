@@ -70,7 +70,7 @@ if (typeof window !== 'undefined') {
             }
           }(d.kind)),
           path: d.path.join('.'),
-          value: JSON.stringify(d.rhs)
+          value: JSON.stringify(((d.kind === 'A') ? d.item.rhs : d.rhs))
         }
       })
       .scan(function (acc, v) {
