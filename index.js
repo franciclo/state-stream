@@ -51,5 +51,37 @@ function query (path) {
   }
 }
 
+if (typeof window !== 'undefined') {
+  window.$tateViz = function (clear) {
+    if (!clear) return console.log('need to pass window.clear function as param')
+    state$Diffs
+      .map(function (d) {
+        return {
+          changetype: (function (kind) {
+            switch (kind) {
+              case 'N':
+                return 'New'
+              case 'E':
+                return 'Edited'
+              case 'D':
+                return 'Deleted'
+              case 'A':
+                return 'New in array'
+            }
+          }(d.kind)),
+          path: d.path.join('.'),
+          value: JSON.stringify(d.rhs)
+        }
+      })
+      .scan(function (acc, v) {
+        acc.push(v)
+        return acc
+      }, [])
+      .subscribe(function (ds) {
+        clear()
+        console.table(ds)
+      })
+  }
+}
 if (typeof window !== 'undefined') window.$tate = query
 module.exports = query
