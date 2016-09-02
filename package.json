@@ -1,6 +1,6 @@
 {
   "name": "state-stream",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Provides a stream of state changes",
   "main": "index.js",
   "scripts": {
